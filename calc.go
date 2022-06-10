@@ -1,6 +1,6 @@
 package calc
 
-package main() {
+func main() {
 	
 }
  
