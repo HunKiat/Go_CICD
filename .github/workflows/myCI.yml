@@ -25,4 +25,4 @@ jobs: # job to execute?
       uses: actions/checkout@v2.4.2
       
     - name: Check File System
-      run: ls -lt
+      run: ls -lt; cat README.md
