@@ -20,3 +20,14 @@ jobs:
             args: release --rm-dist
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Slack Notice To Coder
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: changi-hq
+          SLACK_COLOR: '#FFCC33' #${{ job.status }}; or a specific color like 'good' or '#ff00ff'
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: 'Note: CICD Tag Updated :rocket:'
+          SLACK_TITLE:  CICD Tag changed by ${{github.actor}}
+          SLACK_USERNAME: ivan
+          SLACK_WEBHOOK: ${{ secrets.GO_SLACKWEBHOOK }}
