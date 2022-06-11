@@ -65,3 +65,15 @@ jobs: # job to execute?
         assignees: ${{github.actor}}
         labels: worflow-failed
         body: Workflow failed for commit ${{github.sha}}
+        
+    - uses: actions/checkout@v2
+    - name: Slack Notice To Coder
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: changi-hq
+        SLACK_COLOR: '#FFCC33' #${{ job.status }}; or a specific color like 'good' or '#ff00ff'
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_MESSAGE: 'Note: Post or Push Trigger :rocket:'
+        SLACK_TITLE: Post or Push trigger by ${{github.actor}}
+        SLACK_USERNAME: ivan
+        SLACK_WEBHOOK: ${{ secrets.GO_SLACKWEBHOOK }}
