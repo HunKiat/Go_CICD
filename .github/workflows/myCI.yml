@@ -48,8 +48,8 @@ jobs: # job to execute?
         SLACK_CHANNEL: changi-hq
         SLACK_COLOR: '#FFCC33' #${{ job.status }}; or a specific color like 'good' or '#ff00ff'
         SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_MESSAGE: 'Note: Post or Push Trigger :rocket:'
-        SLACK_TITLE:  ${{github.actor}}
+        SLACK_MESSAGE: 'Note: Push or PR Trigger :rocket:'
+        SLACK_TITLE:  Push or PR made by ${{github.actor}}
         SLACK_USERNAME: ivan
         SLACK_WEBHOOK: ${{ secrets.GO_SLACKWEBHOOK }}
 
