@@ -40,7 +40,19 @@ jobs: # job to execute?
       
     - name: Check File System
       run: ls -lt; cat README.md
-      
+
+    - uses: actions/checkout@v2.4.2
+    - name: Slack Notice To Coder
+      uses: rtCamp/action-slack-notify@v2
+      env:
+        SLACK_CHANNEL: changi-hq
+        SLACK_COLOR: '#FFCC33' #${{ job.status }}; or a specific color like 'good' or '#ff00ff'
+        SLACK_ICON: https://github.com/rtCamp.png?size=48
+        SLACK_MESSAGE: 'Note: Post or Push Trigger :rocket:'
+        SLACK_TITLE: Post or Push trigger by ${{github.actor}}
+        SLACK_USERNAME: ivan
+        SLACK_WEBHOOK: ${{ secrets.GO_SLACKWEBHOOK }}
+
     - name: Install dependencies
       run: |
         go mod init calc  # for go mod. If we use go build, it will do the same for the next 3 lines
@@ -66,14 +78,3 @@ jobs: # job to execute?
         labels: worflow-failed
         body: Workflow failed for commit ${{github.sha}}
         
-    - uses: actions/checkout@v2
-    - name: Slack Notice To Coder
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: changi-hq
-        SLACK_COLOR: '#FFCC33' #${{ job.status }}; or a specific color like 'good' or '#ff00ff'
-        SLACK_ICON: https://github.com/rtCamp.png?size=48
-        SLACK_MESSAGE: 'Note: Post or Push Trigger :rocket:'
-        SLACK_TITLE: Post or Push trigger by ${{github.actor}}
-        SLACK_USERNAME: ivan
-        SLACK_WEBHOOK: ${{ secrets.GO_SLACKWEBHOOK }}
